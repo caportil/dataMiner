@@ -9,7 +9,11 @@ describe('Formats Correctly', function() {
   it('Lists number of found companies in required format', function() {
     expect(locateCAdata.indexOf(`\nNumber of Companies:`)).toBeGreaterThan(-1);
   });
+  it('Accepts parameters in upper or lower case', function() {
+    expect(() => SearchData(mockData, 'locate', 'cA')).not.toThrow();
+  })
 });
+
 describe('Accepts Supported Instructions', function() {
   it('Does not accept insufficient parameters', function() {
     expect(() => SearchData(mockData)).toThrow();
@@ -36,5 +40,32 @@ describe('Accepts Supported Instructions', function() {
   });
   it('Does not run find_type using incorrect parameters', function() {
     expect(() => SearchData(mockData, 'find_type', 'foobar')).toThrow();
+  });
+  it('Does not accept unknown commands', function() {
+    expect(() => SearchData(mockData, 'null', 'foobar')).toThrow();
+  });
+});
+
+describe('Runs provided examples', function() {
+  it('Locates correct companies based in MD', function() {
+    let marylandResults = SearchData(mockData, 'locate', 'MD');
+    expect(marylandResults.indexOf('Computer Packages Inc')).toBeGreaterThan(-1);
+    expect(marylandResults.indexOf('Number of Companies: 8')).toBeGreaterThan(-1);
+
+  });
+  it('Finds companies established after 2002', function() {
+    let findAfterResults = SearchData(mockData, 'find_after', '2002');
+    expect(findAfterResults.indexOf('Department of Better Technology')).toBeGreaterThan(-1);
+    expect(findAfterResults.indexOf('Number of Companies: 187')).toBeGreaterThan(-1);
+  });
+  it('Finds employees between size "1,001-5,000"', function() {
+    let employeeResults = SearchData(mockData, 'find_companies_between_size', '1,001-5,000');
+    expect(employeeResults.indexOf('Morningstar, Inc.')).toBeGreaterThan(-1);
+    expect(employeeResults.indexOf('Number of Companies: 17')).toBeGreaterThan(-1);
+  });
+  it('Finds Geospatial/Mapping companies', function() {
+    let typeResults = SearchData(mockData, 'find_type', 'Geospatial/Mapping');
+    expect(typeResults.indexOf('Liquid Robotics')).toBeGreaterThan(-1);
+    expect(typeResults.indexOf('Number of Companies: 21')).toBeGreaterThan(-1);
   });
 });
