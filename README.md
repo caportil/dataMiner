@@ -21,3 +21,12 @@ Design
 1) dataMiner.js first checks to see if the user has provided sufficient information, then uses the File System module to read the specified JSON data and pass it into the SearchData function along with the specified command/parameters
 2) SearchData standardizes the user's input and checks if the specified command is supported. If so, it iterates through the data array and pushes matching results into an output, which it then uses to return the requested information in the format presented. It throws an error if the command is not supported, or if the parameter is invalid
 3) SearchData is defined in its own separate file to allow Jasmine to test against it properly, while still being exported to allow Node to import into dataMiner.js
+
+Supported Commands
+1) LOCATE [state abbreviation]
+2) FIND_BEFORE [year]
+3) FIND_AFTER [year]
+4) FIND_COMPANIES_BETWEEN_SIZE [number range]
+  -Valid ranges are '1-10', '11-50', '51-200', '201-500', '501-1,000', '1,001-5,000', '5,001-10,000', '10,001+'
+5) FIND_TYPE [company type]
+  -Valid types are 'Aerospace and Defense', 'Business & Legal Services', 'Data/Technology', 'Education', 'Energy', 'Environment & Weather', 'Finance & Investment', 'Food & Agriculture', 'Geospatial/Mapping', 'Governance', 'Healthcare', 'Housing/Real Estate', 'Insurance', 'Lifestyle & Consumer', 'Media', 'Research & Consulting', 'Scientific Research', 'Transportation', and 'N/A'
