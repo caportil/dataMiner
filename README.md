@@ -1,13 +1,13 @@
 Data Miner
 
 Overview
--My data miner consists of several components:
+My data miner consists of several components:
 1) The primary function SearchData, which takes in a JSON file, a command, and a command parameter as its arguments. Exported within SearchData.js
 2) A node file, dataMiner.js, which ingests a JSON file and calls SearchData using this information
 3) Jasmine testing components, found within lib -> jasmine-2.6.1, as well as a SpecRunner.html, Spec.js, and mockData.js files that check to see if the function is working properly
 
 Instructions
--Although the program itself is not OS-specific, Node must be installed in order to run. From the command line, simply use 'node dataMiner.js' followed by:
+Although the program itself is not OS-specific, Node must be installed in order to run. From the command line, simply use 'node dataMiner.js' followed by:
 1) The name of your JSON file
 2) A command (supported commands below)
 3) A command parameter
@@ -15,7 +15,7 @@ Instructions
 For example, running 'node dataMiner.js data.json locate CA' will return a count and list of companies based in California, while running 'node dataMiner.js data.json find_companies_between_size "1,001-5,000"' will search for companies with the specified number of employees.
 
 Testing
--Simply open SpecRunner.html to view the tests, and modify/add additional ones within Spec.js
+Simply open SpecRunner.html to view the tests, and modify/add additional ones within Spec.js
 
 Design
 1) dataMiner.js first checks to see if the user has provided sufficient information, then uses the File System module to read the specified JSON data and pass it into the SearchData function along with the specified command/parameters
@@ -27,6 +27,6 @@ Supported Commands
 2) FIND_BEFORE [year]
 3) FIND_AFTER [year]
 4) FIND_COMPANIES_BETWEEN_SIZE [number range]
-  -Valid ranges are '1-10', '11-50', '51-200', '201-500', '501-1,000', '1,001-5,000', '5,001-10,000', '10,001+'
+  Valid ranges are '1-10', '11-50', '51-200', '201-500', '501-1,000', '1,001-5,000', '5,001-10,000', '10,001+'
 5) FIND_TYPE [company type]
-  -Valid types are 'Aerospace and Defense', 'Business & Legal Services', 'Data/Technology', 'Education', 'Energy', 'Environment & Weather', 'Finance & Investment', 'Food & Agriculture', 'Geospatial/Mapping', 'Governance', 'Healthcare', 'Housing/Real Estate', 'Insurance', 'Lifestyle & Consumer', 'Media', 'Research & Consulting', 'Scientific Research', 'Transportation', and 'N/A'
+  Valid types are 'Aerospace and Defense', 'Business & Legal Services', 'Data/Technology', 'Education', 'Energy', 'Environment & Weather', 'Finance & Investment', 'Food & Agriculture', 'Geospatial/Mapping', 'Governance', 'Healthcare', 'Housing/Real Estate', 'Insurance', 'Lifestyle & Consumer', 'Media', 'Research & Consulting', 'Scientific Research', 'Transportation', and 'N/A'
